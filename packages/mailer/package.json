@@ -1,0 +1,40 @@
+{
+  "name": "@xeuxdev/mailer",
+  "version": "0.0.1",
+  "description": "The mailer for your nodejs apps",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xeuxdev/easy-mailer.git"
+  },
+  "keywords": [
+    "Mail",
+    "Email",
+    "Nodemailer",
+    "Xeuxdev",
+    "Mailer"
+  ],
+  "author": "xeuxdev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xeuxdev/easy-mailer/issues"
+  },
+  "homepage": "https://github.com/xeuxdev/easy-mailer#readme",
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.11",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.5"
+  }
+}

@@ -1,0 +1,20 @@
+abstract nodemailer into an email with monitoring and dashboard
+
+a package with nodemailer. they enter their smtp or google password or email  on site 
+they get a unique api key for sending email or 
+use our package just put from, to , password n use react email boom 
+
+- abstraction on nodemailer, 
+service? 
+
+take the option for service as props n return config for each supported one 
+abstract sendMail to sendMail(
+message: "",
+sender_name: "",
+
+)
+
+if signed up - they get a dashboard backed by an id - 
+to hit when email event occurs 
+post stats to endpoint -  they can see sent, failed, pending, emails
+with graphs and receipients 

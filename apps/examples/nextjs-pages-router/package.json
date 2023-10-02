@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "nextjs-pages-router",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,8 +11,7 @@
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
-    "next": "latest",
-    "ui": "workspace:*"
+    "next": "latest"
   },
   "devDependencies": {
     "typescript": "latest",
@@ -23,8 +22,6 @@
     "postcss": "latest",
     "tailwindcss": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest",
-    "eslint-config-custom": "workspace:*",
-    "tsconfig": "workspace:*"
+    "eslint-config-next": "latest"
   }
 }
