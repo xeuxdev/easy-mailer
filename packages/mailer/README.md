@@ -1,4 +1,4 @@
-# Mailer
+# EasyMailer
 
 ## This package is a zero-config helper function to help you send emails using nodemailer 🚀🚀
 
@@ -14,13 +14,13 @@
 - npm
 
 ```bash
-    npm install @xeuxdev/mailer
+    npm i @xeuxdev/easymailer
 ```
 
 - pnpm
 
 ```bash
-  pnpm install @xeuxdev/mailer
+  pnpm i @xeuxdev/easymailer
 ```
 
 ### Set up your environment variables
@@ -54,9 +54,9 @@ you can get all the above env from your hosting account
 - import the package into your server code
 
 ```js
-import { sendMail } from "@xeuxdev/mailer"
+import { sendMail } from "@xeuxdev/easymailer"
 or
-const { sendMail } = require("@xeuxdev/mailer")
+const { sendMail } = require("@xeuxdev/easymailer")
 ```
 
 - call the function with the params
