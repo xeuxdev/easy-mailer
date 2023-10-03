@@ -1,8 +1,9 @@
-name: Main
+name: CI
 on:
   push:
     branches:
-      - "main"
+      - "dev"
+      - "ci/cd"
 
 jobs:
   build:
