@@ -1,6 +1,6 @@
-const { resolve } = require("node:path");
+const { resolve } = require("node:path")
 
-const project = resolve(process.cwd(), "tsconfig.json");
+const project = resolve(process.cwd(), "tsconfig.json")
 
 /*
  * This is a custom ESLint configuration for use with
@@ -35,5 +35,6 @@ module.exports = {
 
   rules: {
     // add specific rules configurations here
+    "@typescript-eslint/explicit-function-return-type": false,
   },
-};
+}

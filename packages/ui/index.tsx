@@ -1,2 +1,2 @@
 // component exports
-export {}
+export * as Card from "./card"
