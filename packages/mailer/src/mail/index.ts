@@ -1,6 +1,15 @@
 import nodemailer from "nodemailer"
 import { Message, Response, Transport } from "../types"
 
+/**
+ * Sends an email using the provided message and transport options.
+ *
+ * @param {Object} options - The options for sending the email.
+ * @param {Message} options.message - The message object containing the email details.
+ * @param {Transport} options.transport - The transport options for sending the email.
+ * @throws {Error} Throws an error if required environment variables are not set.
+ * @return {Response} The response object containing the status and message of the email sending process.
+ */
 export async function sendMail({
   message,
   transport,
@@ -90,15 +99,6 @@ export async function sendMail({
         : undefined,
   }
 
-  // if (!transporter) return
-
-  // try {
-  //   const res = await transporter?.sendMail(messageToBeSent)
-
-  //   response = res
-  // } catch (error) {
-  //   response = error.message
-  // }
   await transporter
     ?.sendMail(messageToBeSent)
     .then((res) => {

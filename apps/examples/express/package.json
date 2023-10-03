@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@xeuxdev/mailer": "workspace:^0.1.2",
+    "@xeuxdev/easymailer": "workspace:^0.1.2",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "nodemon": "^3.0.1"
