@@ -1,5 +1,5 @@
 {
-  "name": "@xeuxdev/mailer",
+  "name": "@xeuxdev/easymailer",
   "version": "0.0.1",
   "description": "The mailer for your nodejs apps",
   "main": "dist/index.js",

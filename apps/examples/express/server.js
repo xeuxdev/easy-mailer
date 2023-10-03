@@ -1,7 +1,7 @@
 // Import required modules
 const express = require("express")
 require("dotenv").config()
-const { sendMail } = require("@xeuxdev/mailer")
+const { sendMail } = require("@xeuxdev/easymailer")
 
 // Create an Express application
 const app = express()

@@ -1,4 +1,4 @@
-import { sendMail } from "@xeuxdev/mailer"
+import { sendMail } from "@xeuxdev/easymailer"
 
 export async function POST(request: Request) {
   const { email } = await request.json()
