@@ -38,5 +38,12 @@ module.exports = {
   // add rules configurations here
   rules: {
     "import/no-default-export": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "react/jsx-sort-props": "off",
+    "@typescript-eslint/require-await": "off",
   },
 }
