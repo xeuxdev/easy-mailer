@@ -13,6 +13,8 @@ coverage
 out/
 build
 dist
+# text files
+*.txt
 
 # misc
 .DS_Store

@@ -1,6 +1,6 @@
 # EasyMailer
 
-## This package is a zero-config helper function to help you send emails using nodemailer 🚀🚀
+## This package is a zero-config helper function to help you send emails in your nodejs apps using nodemailer 🚀🚀
 
 ### this package provides support for the following transports
 
