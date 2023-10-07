@@ -1,21 +1,15 @@
 {
+  "name": "easy-mailer",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo build && changeset publish"
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
     "eslint": "^8.48.0",
-    "prettier": "^3.0.3",
-    "tsconfig": "workspace:*",
-    "turbo": "latest"
+    "prettier": "^3.0.3"
   },
-  "packageManager": "pnpm@8.6.10",
-  "name": "easy-mailer"
+  "packageManager": "pnpm@8.6.10"
 }
