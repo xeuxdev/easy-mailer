@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 import { UserProfileType } from "@/types"
-import { siteConfig } from "@/config/site"
 import { usePathname } from "next/navigation"
+import LogoutButton from "@/components/ui/addons/logout-button"
 
 function Profile({ user }: { user: UserProfileType }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -35,39 +35,26 @@ function Profile({ user }: { user: UserProfileType }) {
         <DropdownMenuContent className="min-w-[14rem] mr-2 px-4">
           <DropdownMenuLabel>
             <div className="flex flex-col gap-2">
-              {/* <div className="tracking-wider">
-                {user.firstName} {user.lastName}
-              </div> */}
               <p className="tracking-wider">{user.userName}</p>
+              <p className="text-sm text-muted-foreground">{user.email}</p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {siteConfig.navigations.map((item) => {
-            const isActive = item.href === pathname
-            return (
-              <DropdownMenuItem
-                key={item.name}
-                className={`${isActive ? "bg-muted" : ""}`}
-                onClick={() => setIsOpen(false)}
-              >
-                <Link
-                  href={item.href}
-                  className={`capitalize ${isActive ? "font-semibold" : ""} `}
-                >
-                  {item.name}
-                </Link>
-              </DropdownMenuItem>
-            )
-          })}
+
           <DropdownMenuItem onClick={() => setIsOpen(false)}>
-            <Link href={"/my-messages"}>My Messages</Link>
+            <Link
+              href={"/dashboard"}
+              className={`capitalize font-medium hover:font-semibold `}
+            >
+              Dashboard
+            </Link>
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />
 
-          {/* <DropdownMenuItem>
+          <DropdownMenuItem>
             <LogoutButton />
-          </DropdownMenuItem> */}
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
