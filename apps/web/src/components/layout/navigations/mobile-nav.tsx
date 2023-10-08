@@ -6,12 +6,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Menu, Send } from "lucide-react"
+import { Menu } from "lucide-react"
 
 import React, { useState } from "react"
 import { siteConfig } from "@/config/site"
 import Link from "next/link"
 import { Button } from "../../ui/button"
+import { Icons } from "@/components/icons"
 
 function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
@@ -25,17 +26,11 @@ function MobileNav() {
         <SheetHeader>
           <SheetTitle>
             <div className="flex items-center gap-4">
-              <p className="hidden text-lg font-bold text-primary md:text-xl lg:text-2xl md:flex">
-                Ask Out
-              </p>
+              <p className="flex text-xl font-bold text-primary">EasyMailer</p>
 
-              <Send />
+              <Icons.EasyMailer />
             </div>
           </SheetTitle>
-          {/* <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription> */}
         </SheetHeader>
 
         <div className="flex flex-col gap-10 mt-20">

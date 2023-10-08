@@ -5,6 +5,8 @@ export const siteConfig = {
   url: "https://easymailer.vercel.app",
   navigations: [
     { name: "Home", href: "/" },
+    // { name: "Dashboard", href: "/dashboard" },
     { name: "Docs", href: "/docs" },
+    { name: "Pricing", href: "/pricing" },
   ],
 }
