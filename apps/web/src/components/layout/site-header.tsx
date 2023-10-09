@@ -39,7 +39,7 @@ async function SiteHeader() {
             />
           ) : (
             <Button asChild>
-              <Link href={"/login"}>Login</Link>
+              <Link href={"/auth"}>Login</Link>
             </Button>
           )}
           <MobileNav />
