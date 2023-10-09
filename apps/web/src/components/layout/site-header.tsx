@@ -7,11 +7,13 @@ import DesktopNav from "./navigations/desktop-nav"
 import Profile from "./header/profile"
 import { siteConfig } from "@/config/site"
 import MobileNav from "./navigations/mobile-nav"
+import { Button } from "../ui/button"
 
 async function SiteHeader() {
   // const token = cookies().get("anony_user_info")
 
   // console.log(userInfo)
+  const isUser = true
 
   return (
     <header className="py-3 md:py-5">
@@ -28,12 +30,18 @@ async function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <Profile
-            user={{
-              email: "xeuxdev@gmail.com",
-              userName: "xeuxdev",
-            }}
-          />
+          {!isUser ? (
+            <Profile
+              user={{
+                email: "xeuxdev@gmail.com",
+                userName: "xeuxdev",
+              }}
+            />
+          ) : (
+            <Button asChild>
+              <Link href={"/auth"}>Login</Link>
+            </Button>
+          )}
           <MobileNav />
         </div>
       </nav>
