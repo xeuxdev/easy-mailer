@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 function HeroSection() {
   return (
@@ -15,7 +16,9 @@ function HeroSection() {
         EasyMailer helps you skip the hassle of configuration {"–"} saving you
         time and effort!
       </p>
-      <Button>Get Started</Button>
+      <Button>
+        <Link href={"/auth"}>Get Started</Link>
+      </Button>
     </section>
   )
 }
