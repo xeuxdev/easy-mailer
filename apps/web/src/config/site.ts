@@ -9,4 +9,12 @@ export const siteConfig = {
     { name: "Docs", href: "/docs" },
     { name: "Pricing", href: "/pricing" },
   ],
+
+  sidebar: [
+    { name: "Getting Started", href: "/docs/getting-started" },
+    { name: "installation", href: "/docs/installation" },
+    { name: "configuration", href: "/docs/configuration" },
+    { name: "examples", href: "/docs/examples" },
+    { name: "faq", href: "/docs/faq" },
+  ],
 }
