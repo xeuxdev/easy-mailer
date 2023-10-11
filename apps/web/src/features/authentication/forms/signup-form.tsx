@@ -72,9 +72,9 @@ function SignupForm() {
               </p>
             </div>
 
-            <div className="flex items-center justify-between mt-6">
-              <Button type="submit" className="px-10">
-                Login
+            <div className="flex flex-col gap-7 md:flex-row items-center justify-between mt-6">
+              <Button type="submit" className="px-10 w-full">
+                Sign Up
               </Button>
               <OAuthSignIn />
             </div>

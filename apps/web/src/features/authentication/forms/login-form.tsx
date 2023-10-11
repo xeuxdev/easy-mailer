@@ -67,8 +67,8 @@ function LoginForm() {
               </p>
             </div>
 
-            <div className="flex items-center justify-between mt-6">
-              <Button type="submit" className="px-10">
+            <div className="flex flex-col gap-7 md:flex-row  items-center justify-between mt-6">
+              <Button type="submit" className="px-10 w-full">
                 Login
               </Button>
               <OAuthSignIn />
