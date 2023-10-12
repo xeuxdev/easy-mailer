@@ -15,7 +15,18 @@ export const metadata: Metadata = {
 }
 
 function DocsPage() {
-  return <div>DocsPage</div>
+  return (
+    <>
+      <h1 className="text-xl lg:text-4xl my-5">
+        Welcome to the Easy Mailer Documentation
+      </h1>
+
+      <p>
+        Easy Mailer is a helper function to help you send emails using
+        nodemailer 🚀🚀
+      </p>
+    </>
+  )
 }
 
 export default DocsPage

@@ -8,7 +8,7 @@ export default function DocsLayout({
   return (
     <div className="grid grid-cols-12 container gap-10">
       <DocsSideBar />
-      <main className="md:col-span-9 w-full">{children}</main>
+      <main className="md:col-span-9 w-full py-10">{children}</main>
     </div>
   )
 }
