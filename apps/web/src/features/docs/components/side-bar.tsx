@@ -6,14 +6,10 @@ import { usePathname } from "next/navigation"
 import React from "react"
 
 function DocsSideBar() {
-  const matches = useMediaQuery("(min-width: 768px)")
   const pathname = usePathname()
 
-  if (!matches) {
-    return null
-  }
   return (
-    <aside className="col-span-3 flex flex-col gap-2 py-10 ">
+    <aside className="col-span-3 md:flex flex-col gap-2 py-10 hidden ">
       {siteConfig.sidebar.map((item) => {
         const isActive = pathname.includes(item.href)
         console.log(pathname)
