@@ -1,8 +1,11 @@
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import prisma from "../prisma"
 
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -37,37 +40,35 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
-      if (account?.provider === "google") {
-        // console.log(user, profile)
-        const payload = {
-          email: user.email,
-          image: user.image,
-          firstName: profile?.given_name,
-          lastName: profile?.family_name,
-        }
-        const res = await fetch(
-          `${process.env.NEXTAUTH_URL}/api/users/register/google`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          }
-        )
+    // async signIn({ user, account, profile }) {
+    //   if (account?.provider === "google") {
+    //     // console.log(user, profile)
+    //     const payload = {
+    //       email: user.email,
+    //       image: user.image,
+    //     }
+    //     const res = await fetch(
+    //       `${process.env.NEXTAUTH_URL}/api/users/register/google`,
+    //       {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(payload),
+    //       }
+    //     )
 
-        const newUser = await res.json()
+    //     const newUser = await res.json()
 
-        if (newUser) {
-          return newUser
-        } else {
-          return null
-        }
-      }
+    //     if (newUser) {
+    //       return newUser
+    //     } else {
+    //       return null
+    //     }
+    //   }
 
-      return user
-    },
+    //   return user
+    // },
     async jwt({ token, user }) {
       // console.log(user)
       // update token
@@ -95,10 +96,10 @@ export const authOptions: NextAuthOptions = {
     },
   },
   session: {
-    strategy: "jwt",
+    // strategy: "jwt",
     maxAge: 60 * 60 * 24 * 5,
   },
   pages: {
-    signIn: "/login",
+    signIn: "/auth",
   },
 }
