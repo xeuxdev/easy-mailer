@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     expiresIn: 5 * 24 * 60 * 60,
   })
 
-  //   console.log(token)
+  console.log(token)
 
   cookies().set({
     name: "easymailer_user_email",
