@@ -17,6 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { SignUpType, SignupSchema } from "@/lib/validations"
 import { PasswordInput } from "@/components/ui/addons/password-input"
 import OAuthSignIn from "../components/o-auth"
+import { useMutation } from "@tanstack/react-query"
 
 function SignupForm() {
   const {
@@ -25,6 +26,11 @@ function SignupForm() {
     formState: { errors },
   } = useForm<SignUpType>({
     resolver: zodResolver(SignupSchema),
+  })
+
+  const {} = useMutation({
+    mutationFn: async () => {},
+    mutationKey: ["create-user"],
   })
 
   const OnSubmit = ({ confirmPassword, password, email }: SignUpType) => {
