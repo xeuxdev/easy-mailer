@@ -3,21 +3,17 @@ import { z } from "zod"
 const passwordRegex =
   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~])(?!.*\s).{7,}$/
 
-export const authSchema = z.object({
+export const LoginSchema = z.object({
   email: z
     .string({ required_error: "Please enter your email address" })
     .email({ message: "Please enter a valid email address" }),
 
   password: z
     .string({ required_error: "Password is required" })
-    .min(7, { message: "must be at least 7 characters" })
-    .regex(passwordRegex, {
-      message:
-        "must contain at least one uppercase, lowercase, digit, and special characters",
-    }),
+    .min(7, { message: "must be at least 7 characters" }),
 })
 
-export type AuthType = z.infer<typeof authSchema>
+export type LoginType = z.infer<typeof LoginSchema>
 
 const emailSchema = z.string().email()
 

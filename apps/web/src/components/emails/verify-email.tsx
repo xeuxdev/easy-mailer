@@ -22,19 +22,19 @@ const baseUrl = process.env.BASE_URL
 export const VerifyEmail = ({ token }: verifyEmailProps) => (
   <Html>
     <Head />
-    <Preview>Techshop - the place for all your tech gadgets.</Preview>
+    <Preview>{siteConfig.name}</Preview>
     <Body style={main}>
       <Container style={container}>
         <Img
           src={`${baseUrl}/logo.svg`}
           width="100"
           height="50"
-          alt="LinksPark"
+          alt={siteConfig.name}
           style={logo}
         />
         <Text style={paragraph}>Hi,</Text>
         <Text style={paragraph}>
-          Welcome to TechShop, the place for all your tech gadgets. 😊
+          Welcome to {siteConfig.name}, {siteConfig.description}
         </Text>
         <Text style={paragraph}>
           To get started, you need to verify your email by clicking the button
@@ -59,7 +59,7 @@ export const VerifyEmail = ({ token }: verifyEmailProps) => (
         <Text style={paragraph}>
           Best,
           <br />
-          Xeux from ${siteConfig.name}
+          Xeux from {siteConfig.name}
         </Text>
       </Container>
     </Body>

@@ -18,8 +18,13 @@ import { SignUpType, SignupSchema } from "@/lib/validations"
 import { PasswordInput } from "@/components/ui/addons/password-input"
 import OAuthSignIn from "../components/o-auth"
 import { useMutation } from "@tanstack/react-query"
+import { Loader } from "lucide-react"
+import { RegisterUser } from "../services/signup"
+import toast from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 function SignupForm() {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -28,13 +33,22 @@ function SignupForm() {
     resolver: zodResolver(SignupSchema),
   })
 
-  const {} = useMutation({
-    mutationFn: async () => {},
+  const { mutateAsync, isLoading } = useMutation({
+    mutationFn: RegisterUser,
     mutationKey: ["create-user"],
   })
 
   const OnSubmit = ({ confirmPassword, password, email }: SignUpType) => {
     console.log(email, password, confirmPassword)
+
+    mutateAsync({ email, password, confirmPassword })
+      .then(() => {
+        toast.success("User Created successfully")
+        router.push("/verify")
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message)
+      })
   }
 
   return (
@@ -78,9 +92,19 @@ function SignupForm() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-7 md:flex-row items-center justify-between mt-6">
-              <Button type="submit" className="px-10 w-full">
-                Sign Up
+            <div className="flex flex-col items-center justify-between mt-6 gap-7 md:flex-row">
+              <Button
+                type="submit"
+                className="w-full px-10"
+                disabled={isLoading}
+              >
+                {isLoading && (
+                  <>
+                    Signing up....
+                    <Loader className="ml-2 animate-spin" />
+                  </>
+                )}
+                {!isLoading && "Sign Up"}
               </Button>
               <OAuthSignIn />
             </div>

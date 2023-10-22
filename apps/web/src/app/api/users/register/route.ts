@@ -49,7 +49,7 @@ export async function POST(request: Request) {
   const { email } = newUser
 
   const token = jwt.sign({ email }, process.env.JWT_SECRET, {
-    expiresIn: 5 * 24 * 60 * 60,
+    expiresIn: 30 * 24 * 60 * 60,
   })
 
   // console.log(token)
@@ -80,12 +80,6 @@ export async function POST(request: Request) {
   }).then((res) => {
     console.log(res)
   })
-
-  // if (res) {
-  //   return AppResponse("verification email sent", 200)
-  // } else {
-  //   return AppResponse("something went wrong", 500)
-  // }
 
   return AppResponse("User Created successfully", 201)
 }

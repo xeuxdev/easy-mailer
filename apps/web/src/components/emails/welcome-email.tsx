@@ -17,29 +17,23 @@ const baseUrl = process.env.BASE_URL
 export const WelcomeEmail = () => (
   <Html>
     <Head />
-    <Preview>Techshop - the place for all your tech gadgets.</Preview>
+    <Preview>{siteConfig.name}</Preview>
     <Body style={main}>
       <Container style={container}>
         <Img
           src={`${baseUrl}/logo.png`}
           width="100"
           height="50"
-          alt="LinksPark"
+          alt={siteConfig.name}
           style={logo}
         />
         <Text style={paragraph}>Hi ,</Text>
         <Text style={paragraph}>
-          Welcome to TechShop, the place for all your tech gadgets. 😊 We are
-          flad to have you join us
+          Welcome to {siteConfig.name}, {siteConfig.description}
         </Text>
 
         <Section style={btnContainer}>
-          <Button
-            pX={12}
-            pY={12}
-            style={button}
-            href={`${baseUrl !== "" ? baseUrl : "localhost:3000"}/dashboard`}
-          >
+          <Button pX={12} pY={12} style={button} href={`${baseUrl}/dashboard`}>
             Get Started
           </Button>
         </Section>

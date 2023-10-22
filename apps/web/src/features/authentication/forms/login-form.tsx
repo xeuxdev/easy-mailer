@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -14,22 +13,52 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { PasswordInput } from "@/components/ui/addons/password-input"
 import { useForm } from "react-hook-form"
-import { AuthType, authSchema } from "@/lib/validations"
+import { LoginType, LoginSchema } from "@/lib/validations"
 import { zodResolver } from "@hookform/resolvers/zod"
 import OAuthSignIn from "../components/o-auth"
+import { useMutation } from "@tanstack/react-query"
+import { LoginUser } from "../services/login"
+import { signIn } from "next-auth/react"
+import { Loader } from "lucide-react"
+import toast from "react-hot-toast"
+import { useRouter } from "next/navigation"
 
 function LoginForm() {
+  const router = useRouter()
+
   const {
     handleSubmit,
     formState: { errors },
     register,
-  } = useForm<AuthType>({
-    resolver: zodResolver(authSchema),
+  } = useForm<LoginType>({
+    resolver: zodResolver(LoginSchema),
   })
 
-  const OnSubmit = ({ email, password }: AuthType) => {
-    console.log(email, "email")
-    console.log(password, "password")
+  const { mutateAsync, isLoading } = useMutation({
+    mutationFn: LoginUser,
+    mutationKey: ["login-user"],
+  })
+
+  const OnSubmit = ({ email, password }: LoginType) => {
+    mutateAsync({ email, password })
+      .then((res) => {
+        signIn("credentials", {
+          redirect: false,
+          email: email,
+          password: password,
+        }).then((res) => {
+          if (res?.ok) {
+            toast.success("login sucsessful")
+            router.replace(`/dashboard`)
+          }
+        })
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message)
+        if (err.response.data.message == "verify email") {
+          router.push("/verify")
+        }
+      })
   }
 
   return (
@@ -67,9 +96,13 @@ function LoginForm() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-7 md:flex-row  items-center justify-between mt-6">
-              <Button type="submit" className="px-10 w-full">
-                Login
+            <div className="flex flex-col items-center justify-between mt-6 gap-7 md:flex-row">
+              <Button
+                type="submit"
+                className={`w-full px-10 `}
+                disabled={isLoading}
+              >
+                {isLoading ? <Loader className="animate-spin" /> : "Login"}
               </Button>
               <OAuthSignIn />
             </div>

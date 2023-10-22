@@ -70,16 +70,15 @@ export const authOptions: NextAuthOptions = {
     //   return user
     // },
     async jwt({ token, user }) {
-      // console.log(user)
+      console.log(user, "user")
       // update token
       if (user) {
         token.id = user.id
         token.email = user.email
-        token.emailVerified = user.emailVerified
         // token.role = user.role
       }
 
-      // console.log(token)
+      console.log(token, "token")
 
       // return final token
       return token
@@ -88,10 +87,9 @@ export const authOptions: NextAuthOptions = {
       if (token) {
         session.user.id = token.id
         session.user.email = token.email
-        session.user.emailVerified = token.emailVerified
       }
 
-      // console.log(session)
+      console.log(session, "session")
       return session
     },
   },

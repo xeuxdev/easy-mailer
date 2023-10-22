@@ -1,4 +1,4 @@
-import { AppResponse } from "@/lib/api/response"
+import { AppResponse, AppResponseData } from "@/lib/api/response"
 import prisma from "@/lib/prisma"
 import { validateEmail, validatePassword } from "@/lib/validations"
 import bcrypt from "bcrypt"
@@ -57,10 +57,6 @@ export async function POST(request: Request) {
     expires: new Date(Date.now()),
     path: "/", // For all paths
   })
-
-  //   if (User?.emailVerified) {
-  //     return AppResponse("user already exists", 400)
-  //   }
 
   return AppResponse("login sucsessful", 200)
 }
