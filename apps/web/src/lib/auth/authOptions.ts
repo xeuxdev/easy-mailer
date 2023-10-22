@@ -40,37 +40,8 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    // async signIn({ user, account, profile }) {
-    //   if (account?.provider === "google") {
-    //     // console.log(user, profile)
-    //     const payload = {
-    //       email: user.email,
-    //       image: user.image,
-    //     }
-    //     const res = await fetch(
-    //       `${process.env.NEXTAUTH_URL}/api/users/register/google`,
-    //       {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(payload),
-    //       }
-    //     )
-
-    //     const newUser = await res.json()
-
-    //     if (newUser) {
-    //       return newUser
-    //     } else {
-    //       return null
-    //     }
-    //   }
-
-    //   return user
-    // },
     async jwt({ token, user }) {
-      console.log(user, "user")
+      // console.log(user, "user")
       // update token
       if (user) {
         token.id = user.id
@@ -78,7 +49,7 @@ export const authOptions: NextAuthOptions = {
         // token.role = user.role
       }
 
-      console.log(token, "token")
+      // console.log(token, "token")
 
       // return final token
       return token
@@ -89,12 +60,12 @@ export const authOptions: NextAuthOptions = {
         session.user.email = token.email
       }
 
-      console.log(session, "session")
+      // console.log(session, "session")
       return session
     },
   },
   session: {
-    // strategy: "jwt",
+    strategy: "jwt",
     maxAge: 60 * 60 * 24 * 5,
   },
   pages: {

@@ -16,8 +16,9 @@ function OAuthSignIn() {
       variant={"secondary"}
       className="w-full"
       onClick={handleGoogleSignin}
+      type="button"
     >
-      Sign up with Google
+      Sign in with Google
     </Button>
   )
 }
