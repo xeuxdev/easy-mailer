@@ -9,9 +9,9 @@ export async function RegisterUser({
   confirmPassword: string
 }) {
   const res = await axios.post(`/api/users/register`, {
-    email,
-    password,
-    confirmPassword,
+    email: email.trim(),
+    password: password.trim(),
+    confirmPassword: confirmPassword.trim(),
   })
 
   return res.data
