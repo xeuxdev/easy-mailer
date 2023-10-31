@@ -1,5 +1,4 @@
 import React from "react"
-import { cookies } from "next/headers"
 import { Send } from "lucide-react"
 import Link from "next/link"
 import { ThemeToggle } from "../theme/theme-toggle"
@@ -18,7 +17,11 @@ async function SiteHeader() {
   return (
     <header className="py-3 md:py-5">
       <nav className="container flex items-center justify-between bg-background ">
-        <Link href="/" className="flex items-center gap-4">
+        <Link
+          href="/"
+          className="flex items-center gap-4"
+          aria-label={siteConfig.name}
+        >
           <p className="text-lg font-bold text-primary md:text-xl ">
             {siteConfig.name}
           </p>

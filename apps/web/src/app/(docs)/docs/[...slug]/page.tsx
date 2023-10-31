@@ -20,6 +20,15 @@ export async function generateMetadata({
   }
 }
 
+// use to statically generate the pages at build time rather than at request time
+export function generateStaticParams() {
+  const pages = siteConfig.sidebar.map((item) => {
+    return { slug: item.href }
+  })
+
+  return [pages]
+}
+
 function DocItemPage({ params }: { params: { slug: string } }) {
   return (
     <div className="py-10">
