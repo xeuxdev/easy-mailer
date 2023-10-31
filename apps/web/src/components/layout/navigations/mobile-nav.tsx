@@ -23,8 +23,8 @@ function MobileNav() {
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger className="md:hidden">
-        <Menu />
+      <SheetTrigger className="md:hidden" aria-label="open menu icon">
+        <Menu aria-label="open menu icon" />
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
