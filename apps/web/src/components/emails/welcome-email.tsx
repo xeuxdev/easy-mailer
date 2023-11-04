@@ -33,7 +33,7 @@ export const WelcomeEmail = () => (
         </Text>
 
         <Section style={btnContainer}>
-          <Button pX={12} pY={12} style={button} href={`${baseUrl}/dashboard`}>
+          <Button style={button} href={`${baseUrl}/dashboard`}>
             Get Started
           </Button>
         </Section>
@@ -76,11 +76,14 @@ const btnContainer = {
 }
 
 const button = {
-  backgroundColor: "#5F51E8",
-  borderRadius: "3px",
+  backgroundColor: "#007ee6",
+  borderRadius: "4px",
   color: "#fff",
-  fontSize: "16px",
+  fontFamily: "'Open Sans', 'Helvetica Neue', Arial",
+  fontSize: "15px",
   textDecoration: "none",
   textAlign: "center" as const,
   display: "block",
+  width: "210px",
+  padding: "14px 7px",
 }
