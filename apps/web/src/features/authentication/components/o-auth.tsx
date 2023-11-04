@@ -7,7 +7,7 @@ function OAuthSignIn() {
   const handleGoogleSignin = async () => {
     await signIn("google", {
       callbackUrl: "/dashboard",
-      redirect: false,
+      redirect: true,
     })
   }
 

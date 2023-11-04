@@ -1,5 +1,4 @@
 import { NextAuthOptions } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import prisma from "../prisma"
@@ -11,64 +10,13 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-    CredentialsProvider({
-      name: "Credentials",
-
-      // @ts-ignore
-      async authorize(
-        credentials: {
-          email: string
-          password: string
-        },
-        req
-      ) {
-        const res = await fetch(
-          `${process.env.NEXTAUTH_URL}/api/users/login/info`,
-          {
-            method: "POST",
-            body: JSON.stringify(credentials),
-          }
-        )
-        const user = await res.json()
-
-        if (user) {
-          return user
-        } else {
-          return null
-        }
-      },
-    }),
   ],
-  callbacks: {
-    async jwt({ token, user }) {
-      // console.log(user, "user")
-      // update token
-      if (user) {
-        token.id = user.id
-        token.email = user.email
-        // token.role = user.role
-      }
-
-      // console.log(token, "token")
-
-      // return final token
-      return token
-    },
-    async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id
-        session.user.email = token.email
-      }
-
-      // console.log(session, "session")
-      return session
-    },
-  },
   session: {
     strategy: "jwt",
     maxAge: 60 * 60 * 24 * 5,
   },
   pages: {
     signIn: "/auth",
+    newUser: "/verify",
   },
 }

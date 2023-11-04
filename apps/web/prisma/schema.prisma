@@ -52,7 +52,6 @@ model User {
   email         String?   @unique
   emailVerified Boolean?  @default(false)
   image         String?
-  password      String?
   accounts      Account[]
   sessions      Session[]
   profile       Profile?

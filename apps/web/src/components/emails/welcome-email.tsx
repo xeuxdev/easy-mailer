@@ -33,7 +33,7 @@ export const WelcomeEmail = () => (
         </Text>
 
         <Section style={btnContainer}>
-          <Button pX={12} pY={12} style={button} href={`${baseUrl}/dashboard`}>
+          <Button className="p-4" style={button} href={`${baseUrl}/dashboard`}>
             Get Started
           </Button>
         </Section>

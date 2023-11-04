@@ -1,7 +1,15 @@
 import { siteConfig } from "@/config/site"
-import { AuthTabs } from "@/features/authentication"
 import { Metadata } from "next"
 import React from "react"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { OAuthSignIn } from "@/features/authentication"
 
 export const metadata: Metadata = {
   title: `Sign in to ${siteConfig.name}`,
@@ -11,7 +19,17 @@ export const metadata: Metadata = {
 function AuthPage() {
   return (
     <>
-      <AuthTabs />
+      <Card>
+        <CardHeader>
+          <CardTitle>Sign in</CardTitle>
+          <CardDescription>
+            Login to have full access to easymailer
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <OAuthSignIn />
+        </CardContent>
+      </Card>
     </>
   )
 }
