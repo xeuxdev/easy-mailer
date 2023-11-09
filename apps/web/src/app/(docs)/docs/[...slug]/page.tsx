@@ -1,3 +1,4 @@
+export const dynamic = "force-static"
 import { siteConfig } from "@/config/site"
 import { Metadata } from "next"
 import React from "react"
@@ -22,11 +23,11 @@ export async function generateMetadata({
 
 // use to statically generate the pages at build time rather than at request time
 export function generateStaticParams() {
-  const pages = siteConfig.sidebar.map((item) => {
-    return { slug: item.href }
-  })
-
-  return [pages]
+  return [
+    siteConfig.sidebar.map((page) => ({
+      slug: page.href.toString().replaceAll("/docs", ""),
+    })),
+  ]
 }
 
 function DocItemPage({ params }: { params: { slug: string } }) {
