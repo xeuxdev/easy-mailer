@@ -6,9 +6,9 @@ export default function DocsLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="grid grid-cols-12 container gap-10">
+    <div className="container grid grid-cols-12 gap-10">
       <DocsSideBar />
-      <main className="md:col-span-9 w-full py-10">{children}</main>
+      <main className="w-full col-span-12 py-10 md:col-span-9">{children}</main>
     </div>
   )
 }
