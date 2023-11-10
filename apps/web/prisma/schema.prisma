@@ -63,7 +63,6 @@ model Profile {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
   api_key String?
   userId  String  @unique @db.ObjectId
-  eventId String  @db.ObjectId
 
   events EmailEvent[]
 

@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider"
 import QueryProvider from "@/components/query-provider"
 import Toast from "@/components/toast"
 import SiteHeader from "@/components/layout/site-header"
+import SessionProviderWrapper from "@/components/session-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -54,10 +55,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <QueryProvider>
-            <SiteHeader />
-            {children}
-          </QueryProvider>
+          <SessionProviderWrapper>
+            <QueryProvider>
+              <SiteHeader />
+              {children}
+            </QueryProvider>
+          </SessionProviderWrapper>
           <Toast />
           {/* <Analytics /> */}
         </ThemeProvider>
