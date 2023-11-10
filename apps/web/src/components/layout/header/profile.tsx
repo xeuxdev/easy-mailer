@@ -40,13 +40,16 @@ function Profile({ user }: { user: UserProfileType }) {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
 
-          {["dashboard", "/dashbaord/settings"].map((item) => (
-            <DropdownMenuItem key={item} onClick={() => setIsOpen(false)}>
+          {[
+            { name: "dashboard", href: "/dashboard" },
+            { name: "settings", href: "/dashboard/settings" },
+          ].map((item) => (
+            <DropdownMenuItem key={item.name} onClick={() => setIsOpen(false)}>
               <Link
-                href={item}
+                href={item.href}
                 className={`capitalize font-medium hover:font-semibold `}
               >
-                {item}
+                {item.name}
               </Link>
             </DropdownMenuItem>
           ))}

@@ -1,4 +1,8 @@
-export async function GenerateAPIKey(prevState: any) {
+"use server"
+
+export default async function GenerateAPIKey() {
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+
   try {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -9,7 +13,7 @@ export async function GenerateAPIKey(prevState: any) {
       apiKey += characters[randomIndex]
     }
 
-    return apiKey
+    return { message: apiKey }
   } catch (error) {
     return { message: "failed to generate api key" }
   }

@@ -4,8 +4,8 @@ import { authOptions } from "./authOptions"
 type UserSession = {
   email: string
   id: string
-  emailVerified: boolean
   image: string
+  name: string
 }
 
 export async function UserSession() {

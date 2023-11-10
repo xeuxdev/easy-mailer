@@ -134,7 +134,7 @@ export function BatchInfoTable() {
   const filteredData = requests.filter((item) => item.status == filter)
 
   return (
-    <div className="w-full">
+    <div className="w-full pb-10">
       <div className="flex items-center py-4">
         <Input placeholder="Filter emails..." className="max-w-sm" />
         <DropdownMenu>

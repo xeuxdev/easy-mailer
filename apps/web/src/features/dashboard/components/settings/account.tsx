@@ -1,62 +1,36 @@
-"use client"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import React from "react"
-import { useFormState, useFormStatus } from "react-dom"
-import { accountFormAction } from "../../actions/account"
+import { UserSession } from "@/lib/auth/session"
 
-const initialState = {
-  firstName: "",
-  lastName: "",
-  message: "",
-}
-
-const SubmitButton = () => {
-  const { pending } = useFormStatus()
-
-  return (
-    <Button className="w-fit" type="submit" aria-disabled={pending}>
-      {pending ? "Saving..." : "Save"}
-    </Button>
-  )
-}
-
-export default function Account() {
+export default async function Account() {
+  const userInfo = await UserSession()
   // get user data here
 
-  const [state, formAction] = useFormState(accountFormAction, initialState)
-
   return (
-    <div>
-      <form action={formAction} className="flex flex-col gap-4">
-        <div className="flex flex-col w-full gap-5 md:flex-row">
-          <div className="w-full">
-            <Label htmlFor="firstName">First Name</Label>
-            <Input
-              defaultValue={""}
-              name="firstName"
-              placeholder="First Name"
-            />
-          </div>
-
-          <div className="w-full">
-            <Label htmlFor="lastName">Last Name</Label>
-            <Input defaultValue={""} name="lastName" placeholder="Last Name" />
-          </div>
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col w-full gap-5 md:flex-row">
+        <div className="w-full">
+          <Label htmlFor="firstName">First Name</Label>
+          <Info info={userInfo.name.split(" ")[0]} />
         </div>
 
         <div className="w-full">
-          <Label htmlFor="email">Email</Label>
-          <Input defaultValue={""} name="email" placeholder="Email" disabled />
+          <Label htmlFor="lastName">Last Name</Label>
+          <Info info={userInfo.name.split(" ")[1]} />
         </div>
+      </div>
 
-        <p aria-live="polite" className="">
-          {state?.message}
-        </p>
+      <div className="w-full">
+        <Label htmlFor="email">Email</Label>
+        <Info info={userInfo.email} />
+      </div>
+    </div>
+  )
+}
 
-        <SubmitButton />
-      </form>
+const Info = ({ info }: { info: string }) => {
+  return (
+    <div className="flex w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+      {info}
     </div>
   )
 }

@@ -1,14 +1,30 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { useMutation } from "@tanstack/react-query"
 import { CheckCheck, Copy, Eye, EyeOff } from "lucide-react"
 import React, { useState } from "react"
 import toast from "react-hot-toast"
+import axios from "axios"
+import { useSession } from "next-auth/react"
 
 export default function API() {
   const [isAPIKeyCopied, setIsAPIKeyCopied] = useState(false)
-  const [apiKey, setApiKey] = useState("857264758602847hd")
+  const [apiKey, setApiKey] = useState("xxxxxxxxxxxxxxxxxxxx")
   const [showAPIKey, setShowAPIKey] = useState(false)
+
+  const { data: session } = useSession()
+
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: async () => {
+      const res = await axios.post("/api/users/profile/api-key", {
+        email: session?.user.email,
+      })
+
+      return res.data as { message: string }
+    },
+    mutationKey: ["generate API key"],
+  })
 
   const handleCopy = (key: string) => {
     navigator.clipboard.writeText(key).then(() => {
@@ -21,20 +37,15 @@ export default function API() {
   }
 
   const handleGenerateAPIKey = () => {
-    //  do api request
-
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-    const length = 20 // Length of the batch ID
-    let apiKey = ""
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length)
-      apiKey += characters[randomIndex]
-    }
-
-    setApiKey(apiKey)
-
-    toast.success("API key generated successfully")
+    mutateAsync()
+      .then((res) => {
+        // console.log(res)
+        setApiKey(res.message)
+        toast.success("API key generated successfully")
+      })
+      .catch((err) => {
+        toast.error(err)
+      })
   }
 
   return (
@@ -42,7 +53,7 @@ export default function API() {
       <p>Your API Key</p>
 
       <div className="relative flex items-center h-12 pl-5 pr-20 my-8 border-2 rounded-md bg-card border-border">
-        <p>{showAPIKey ? apiKey : "xxxxxxxxxxxxxxxxxxx"}</p>
+        <p>{showAPIKey ? apiKey : "xxxxxxxxxxxxxxxxxxxx"}</p>
 
         <div className="absolute flex items-center h-full gap-4 -translate-y-1/2 right-3 top-1/2">
           <div
@@ -62,7 +73,9 @@ export default function API() {
         </div>
       </div>
 
-      <Button onClick={handleGenerateAPIKey}>Generate new API key</Button>
+      <Button onClick={handleGenerateAPIKey}>
+        {isPending ? "Generating...." : "Generate new API key"}
+      </Button>
     </>
   )
 }
