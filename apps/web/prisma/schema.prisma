@@ -61,31 +61,25 @@ model User {
 
 model Profile {
   id      String  @id @default(auto()) @map("_id") @db.ObjectId
-  api_key String?
+  api_key String? @unique
   userId  String  @unique @db.ObjectId
 
-  events EmailEvent[]
+  events EmailBatch[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model MailInfo {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  eventId String @db.ObjectId
+model EmailBatch {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  batch_id  String @unique
+  profileId String @unique @db.ObjectId
 
-  received String[]
+  accepted String[]
   rejected String[]
   pending  String[]
 
-  event     EmailEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-}
+  messageId String
 
-model EmailEvent {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  profileId String     @db.ObjectId
-  requests  MailInfo[]
-  eventTime DateTime   @default(now())
-  profile   Profile    @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  eventTime DateTime @default(now())
+  profile   Profile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
 }

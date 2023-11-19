@@ -12,7 +12,12 @@ app.get("/", async (req, res) => {
     message: {
       from: "John Express",
       html: "Hey this is a message from express",
-      bcc: "xeyhuru@gmail.com",
+      bcc: [
+        "xeyhuru@gmail.com",
+        "xeuxdev@gmail.com",
+        "crowdo.app@gmail.com",
+        "headbwoi25@gmail.com",
+      ],
       subject: "Test Email From Express",
     },
     transport: {
