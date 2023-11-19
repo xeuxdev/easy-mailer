@@ -1,5 +1,15 @@
 # @xeuxdev/easymailer
 
+## 0.2.0
+
+### Minor Changes
+
+- 2de3426: # Minor Changes / improvements
+
+  - Modify properties types
+  - add JS Docs / better explanation of props
+  - Integrate function to send res to api using api keys
+
 ## 0.1.1
 
 ### Patch Changes
