@@ -12,6 +12,7 @@ export default function API() {
   const [isAPIKeyCopied, setIsAPIKeyCopied] = useState(false)
   const [apiKey, setApiKey] = useState("xxxxxxxxxxxxxxxxxxxx")
   const [showAPIKey, setShowAPIKey] = useState(false)
+  const [showBanner, setShowBanner] = useState(false)
 
   const { data: session } = useSession()
 
@@ -42,6 +43,7 @@ export default function API() {
         // console.log(res)
         setApiKey(res.message)
         toast.success("API key generated successfully")
+        setShowBanner(true)
       })
       .catch((err) => {
         toast.error(err)
@@ -52,6 +54,12 @@ export default function API() {
     <>
       <p>Your API Key</p>
 
+      {showBanner && (
+        <p className="p-2 transition-all duration-300 rounded-md bg-muted">
+          Ensure you copy your api key to a secure location as you won&apos;t be
+          able to see it again.
+        </p>
+      )}
       <div className="relative flex items-center h-12 pl-5 pr-20 my-8 border-2 rounded-md bg-card border-border">
         <p>{showAPIKey ? apiKey : "xxxxxxxxxxxxxxxxxxxx"}</p>
 
