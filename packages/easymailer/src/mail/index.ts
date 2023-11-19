@@ -1,5 +1,39 @@
 import nodemailer from "nodemailer"
 import { Message, Response, Transport } from "../types"
+import SMTPTransport from "nodemailer/lib/smtp-transport"
+
+/**
+ * Sends the email response object to the API to store the info.
+ *
+ * @param {SMTPTransport.SentMessageInfo} props - The information about the sent email.
+ */
+async function sendEmailResponseToAPI(props: SMTPTransport.SentMessageInfo) {
+  // if there is no api key skip this process
+  if (!process.env.MAILER_API_KEY) {
+    return props
+  }
+
+  const payload = {
+    accepted: props.accepted,
+    rejected: props.rejected,
+    response: props.response,
+    envelope: props.envelope,
+    messageId: props.messageId,
+    apiKey: process.env.MAILER_API_KEY?.replace(/['"]+/g, ""),
+  }
+
+  const url =
+    process.env.NODE_ENV == "production"
+      ? "https://easymailer.vercel.app"
+      : "http://localhost:3000"
+
+  await fetch(`${url}/api/users/profile/events`, {
+    method: "POST",
+    body: JSON.stringify({ payload }),
+  })
+
+  // const data = await res.json()
+}
 
 /**
  * Sends an email using the provided message and transport options.
@@ -77,8 +111,10 @@ export async function sendMail({
     })
   }
 
+  // determine user email
   const user = transport.service === "gmail" ? GOOGLE_EMAIL : SMTP_USER
 
+  // object of the message to be sent to the transporter
   const messageToBeSent = {
     from: {
       name: message.from,
@@ -99,6 +135,7 @@ export async function sendMail({
         : undefined,
   }
 
+  // calling the transporter to send the email
   await transporter
     ?.sendMail(messageToBeSent)
     .then((res) => {
@@ -108,7 +145,9 @@ export async function sendMail({
           : "",
         status: "successful",
       }
-      // make api req to endpoint if it exists
+
+      // send info to api
+      sendEmailResponseToAPI(res)
     })
     .catch((err) => {
       // make api req to endpoint if it exist
@@ -119,6 +158,7 @@ export async function sendMail({
           .trim(),
         status: "failed",
       }
+      console.log(err)
       // response = err.message.split("Learn more at")[0].trim()
     })
 
