@@ -12,19 +12,20 @@ export const metadata: Metadata = {
 async function DashboardPage() {
   const user = await UserSession()
 
+  // fetches the user, profile and event data info for this page
   const profileInfo = await getProfileInfo(user.email)
-
-  console.log(profileInfo)
-
-  // get user profile info
 
   return (
     <>
       <h1 className="my-10 text-xl font-bold">Welcome back</h1>
 
-      <DashboardHero />
+      <DashboardHero
+        totalAccepted={profileInfo.totalAcceptedEmails}
+        totalRejected={profileInfo.totalRejectedEmails}
+        totalPending={profileInfo.totalPendingEmails}
+      />
 
-      <DashboardRequestsTable />
+      <DashboardRequestsTable requests={profileInfo.events} />
     </>
   )
 }

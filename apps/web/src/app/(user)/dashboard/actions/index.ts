@@ -1,7 +1,6 @@
 "use server"
 
 import prisma from "@/lib/prisma"
-import { Session } from "next-auth"
 
 export async function getProfileInfo(email: string) {
   const user = await prisma.user.findUnique({
@@ -36,4 +35,14 @@ export async function getProfileInfo(email: string) {
     totalPendingEmails,
     events: user?.profile?.events,
   }
+}
+
+export async function getBatchDetails(batch_id: string) {
+  const batchDetails = await prisma.emailBatch.findUnique({
+    where: {
+      batch_id: batch_id,
+    },
+  })
+
+  return batchDetails
 }

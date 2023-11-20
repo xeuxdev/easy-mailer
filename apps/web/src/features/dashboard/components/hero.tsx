@@ -7,7 +7,17 @@ import {
 } from "@/components/ui/card"
 import React from "react"
 
-function DashboardHero() {
+type DashboardHeroProps = {
+  totalAccepted: number | undefined
+  totalRejected: number | undefined
+  totalPending: number | undefined
+}
+
+function DashboardHero({
+  totalAccepted,
+  totalPending,
+  totalRejected,
+}: DashboardHeroProps) {
   return (
     <section className="grid grid-cols-1 gap-10 lg:grid-cols-3">
       {/* accepted */}
@@ -19,7 +29,7 @@ function DashboardHero() {
 
         <CardContent>
           <div className="flex gap-5">
-            <p className="text-xl md:text-2xl">20</p>
+            <p className="text-xl md:text-2xl">{totalAccepted}</p>
           </div>
         </CardContent>
       </Card>
@@ -34,7 +44,7 @@ function DashboardHero() {
 
         <CardContent>
           <div className="flex gap-5">
-            <p className="text-xl md:text-2xl">20</p>
+            <p className="text-xl md:text-2xl">{totalRejected}</p>
           </div>
         </CardContent>
       </Card>
@@ -49,7 +59,7 @@ function DashboardHero() {
 
         <CardContent>
           <div className="flex gap-5">
-            <p className="text-xl md:text-2xl">20</p>
+            <p className="text-xl md:text-2xl">{totalPending}</p>
           </div>
         </CardContent>
       </Card>

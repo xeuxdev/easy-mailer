@@ -19,38 +19,24 @@ import {
 import { MoreHorizontal } from "lucide-react"
 import Link from "next/link"
 
-const requests = [
-  {
-    requestTime: "10-12-23 - 10:45",
-    batchId: "47575hdhjf",
-    successfulCount: "250",
-    failedCount: "50",
-    pendingCount: "30",
-  },
-  {
-    requestTime: "11-15-23 - 14:30",
-    batchId: "98sdf7sdf2",
-    successfulCount: "200",
-    failedCount: "30",
-    pendingCount: "45",
-  },
-  {
-    requestTime: "09-28-23 - 08:12",
-    batchId: "1a2b3c4d5e",
-    successfulCount: "300",
-    failedCount: "20",
-    pendingCount: "15",
-  },
-  {
-    requestTime: "12-05-23 - 17:55",
-    batchId: "6h7i8j9k0l",
-    successfulCount: "180",
-    failedCount: "70",
-    pendingCount: "25",
-  },
-]
+type DashboardRequestsTableProps =
+  | {
+      id: string
+      batch_id: string
+      profileId: string
+      accepted: string[]
+      rejected: string[]
+      pending: string[]
+      messageId: string
+      eventTime: Date
+    }[]
+  | undefined
 
-export function DashboardRequestsTable() {
+export function DashboardRequestsTable({
+  requests,
+}: {
+  requests: DashboardRequestsTableProps
+}) {
   return (
     <section className="my-10">
       <h2 className="mb-10 text-xl font-bold">Requests Info</h2>
@@ -61,21 +47,23 @@ export function DashboardRequestsTable() {
           <TableRow>
             <TableHead>Time</TableHead>
             <TableHead>Batch ID</TableHead>
-            <TableHead>Successful</TableHead>
-            <TableHead>Failed</TableHead>
+            <TableHead className="text-left">Accepted</TableHead>
+            <TableHead>Rejected</TableHead>
             <TableHead>Pending</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {requests.map((req) => (
-            <TableRow key={req.batchId}>
-              <TableCell className="font-medium">{req.requestTime}</TableCell>
-              <TableCell>{req.batchId}</TableCell>
-              <TableCell>{req.successfulCount}</TableCell>
-              <TableCell>{req.failedCount}</TableCell>
-              <TableCell>{req.pendingCount}</TableCell>
+          {requests?.map((req) => (
+            <TableRow key={req.id}>
+              <TableCell className="font-medium">
+                {new Date(req.eventTime).toLocaleString()}
+              </TableCell>
+              <TableCell>{req.batch_id}</TableCell>
+              <TableCell className="text-left">{req.accepted.length}</TableCell>
+              <TableCell>{req.rejected.length}</TableCell>
+              <TableCell>{req.pending.length}</TableCell>
               <TableCell>
-                <Menu batchId={req.batchId} />
+                <Menu batchId={req.batch_id} />
               </TableCell>
             </TableRow>
           ))}
