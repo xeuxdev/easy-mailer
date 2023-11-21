@@ -2,6 +2,12 @@ import { AppResponse, AppResponseData } from "@/lib/api/response"
 import prisma from "@/lib/prisma"
 import { EmailEnvelopeResponse } from "@/types"
 
+/**
+ * Generates a random batch ID of specified length.
+ *
+ * @param {number} [length=10] - The length of the batch ID. Defaults to 10.
+ * @return {string} - The generated batch ID.
+ */
 function generateBatchId(length = 10) {
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -21,6 +27,7 @@ export async function POST(request: Request) {
     payload: EmailEnvelopeResponse
   }
 
+  // finds the users profile info
   const ProfileInfo = await prisma.profile.findUnique({
     where: {
       api_key: payload.apiKey,
@@ -31,6 +38,7 @@ export async function POST(request: Request) {
     return AppResponse("bad guy, i see you", 400)
   }
 
+  // create a new email event
   const emailEvent = await prisma.emailBatch.create({
     data: {
       batch_id: generateBatchId(10),
@@ -42,7 +50,7 @@ export async function POST(request: Request) {
     },
   })
 
-  console.log(emailEvent)
+  // console.log(emailEvent)
 
   return AppResponseData(emailEvent, 201)
 }

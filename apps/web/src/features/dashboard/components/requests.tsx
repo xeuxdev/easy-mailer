@@ -58,7 +58,9 @@ export function DashboardRequestsTable({
               <TableCell className="font-medium">
                 {new Date(req.eventTime).toLocaleString()}
               </TableCell>
-              <TableCell>{req.batch_id}</TableCell>
+              <Link href={`/dashboard/batch/${req.batch_id}`}>
+                <TableCell>{req.batch_id}</TableCell>
+              </Link>
               <TableCell className="text-left">{req.accepted.length}</TableCell>
               <TableCell>{req.rejected.length}</TableCell>
               <TableCell>{req.pending.length}</TableCell>

@@ -42,13 +42,26 @@ export function BatchInfoTable({
   batchDetails: BatchInfoTableProps
 }) {
   const [filter, setFilter] = React.useState<Filters>("accepted")
+  const [searchQuery, setSearchQuery] = React.useState("")
 
   const filteredData = batchDetails?.[filter]
+
+  const filteredDataWithSearch = filteredData?.filter((data) =>
+    data.includes(searchQuery)
+  )
 
   return (
     <div className="w-full pb-10">
       <div className="flex items-center py-4">
-        <Input placeholder="Filter emails..." className="max-w-sm" />
+        <Input
+          placeholder="Filter emails..."
+          className="max-w-sm"
+          onChange={(e) => {
+            setTimeout(() => {
+              setSearchQuery(e.target.value)
+            }, 200)
+          }}
+        />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto capitalize">
@@ -70,7 +83,7 @@ export function BatchInfoTable({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="border rounded-md">
+      <div className="border rounded-md ">
         <Table className="min-w-[500px] mx-auto">
           <TableHeader>
             <TableRow>
@@ -79,21 +92,21 @@ export function BatchInfoTable({
               <TableHead>Status</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
-            {filteredData?.map((req) => (
-              <TableRow key={req}>
+          <TableBody className="w-full">
+            {filteredDataWithSearch?.map((item) => (
+              <TableRow key={item}>
                 <TableCell className="font-medium">
                   {batchDetails?.eventTime.toLocaleString()}
                 </TableCell>
-                <TableCell>{req}</TableCell>
+                <TableCell>{item}</TableCell>
                 <TableCell>{filter}</TableCell>
               </TableRow>
             ))}
 
             {!filteredData ||
               (filteredData.length < 1 && (
-                <div className="flex items-center justify-center w-full h-12 font-semibold text-center capitalize text-muted">
-                  no results....
+                <div className="flex items-center justify-center h-12 mx-auto font-semibold text-center text-muted-foreground">
+                  <p> No Results....</p>
                 </div>
               ))}
           </TableBody>

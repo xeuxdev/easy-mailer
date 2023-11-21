@@ -22,10 +22,7 @@ async function sendEmailResponseToAPI(props: SMTPTransport.SentMessageInfo) {
     apiKey: process.env.MAILER_API_KEY?.replace(/['"]+/g, ""),
   }
 
-  const url =
-    process.env.NODE_ENV == "production"
-      ? "https://easymailer.vercel.app"
-      : "http://localhost:3000"
+  const url = "https://easymailer.vercel.app"
 
   await fetch(`${url}/api/users/profile/events`, {
     method: "POST",
