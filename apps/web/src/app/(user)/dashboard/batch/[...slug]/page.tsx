@@ -1,5 +1,6 @@
 import { BatchInfoTable } from "@/features/dashboard"
 import { getBatchDetails } from "../../actions"
+import BackButton from "@/components/ui/addons/back-button"
 
 export default async function RequestsBatchInfo({
   params,
@@ -12,6 +13,7 @@ export default async function RequestsBatchInfo({
 
   return (
     <>
+      <BackButton />
       <h1 className="my-10 text-2xl font-bold">Request Info</h1>
 
       {/*  */}
