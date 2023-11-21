@@ -10,7 +10,11 @@ export async function getProfileInfo(email: string) {
     include: {
       profile: {
         select: {
-          events: true,
+          events: {
+            orderBy: {
+              eventTime: "desc",
+            },
+          },
         },
       },
     },
