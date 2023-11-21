@@ -1,5 +1,11 @@
 # @xeuxdev/easymailer
 
+## 0.2.1
+
+### Patch Changes
+
+- ad56ced: update email event post url
+
 ## 0.2.0
 
 ### Minor Changes
