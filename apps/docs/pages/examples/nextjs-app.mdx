@@ -1,9 +1,26 @@
-import { sendMail } from "@xeuxdev/easymailer"
+# Next.Js App Router
 
+To use easymailer with Next.js App router
+
+- in your nextjs app, install the `easymailer` package
+
+```js npm2yarn copy
+npm i @xeuxdev/easymailer
+```
+
+- `import the easymailer package into your api route`
+
+```js filename="api/email/route.js/ts" copy
+import { sendMail } from "@xeuxdev/easymailer"
+```
+
+- Don't forget to add your environment variables, to see how you can do that go to [usage](/configuration)
+
+- below is an example code
+
+```js
 export async function POST(request: Request) {
   const { email } = await request.json()
-
-  console.log(email)
 
   const response = await sendMail({
     message: {
@@ -26,6 +43,7 @@ export async function POST(request: Request) {
       status: response.status == "failed" ? 500 : 200,
     }
   )
-
-  // console.log(response)
 }
+```
+
+View the [source code here](https://github.com/xeuxdev/easy-mailer/tree/main/apps/examples/nextjs-app-router)
