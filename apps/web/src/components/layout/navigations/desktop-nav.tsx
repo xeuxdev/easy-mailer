@@ -11,7 +11,9 @@ function DesktopNav() {
   return (
     <div className="items-center hidden gap-7 md:flex">
       {siteConfig.navigations.map((item) => {
-        const isActive = pathname === item.href
+        const isActive =
+          pathname === item.href ||
+          pathname.split("/")[1] === item.href.replaceAll("/", "")
 
         return (
           <Link

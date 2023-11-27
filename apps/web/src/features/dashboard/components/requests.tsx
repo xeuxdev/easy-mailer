@@ -45,8 +45,8 @@ export function DashboardRequestsTable({
         <TableCaption>A list of your recent requests.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Time</TableHead>
             <TableHead>Batch ID</TableHead>
+            <TableHead>Time</TableHead>
             <TableHead className="text-left">Accepted</TableHead>
             <TableHead>Rejected</TableHead>
             <TableHead>Pending</TableHead>
@@ -55,12 +55,15 @@ export function DashboardRequestsTable({
         <TableBody>
           {requests?.map((req) => (
             <TableRow key={req.id}>
+              <TableCell>
+                <Link href={`/dashboard/batch/${req.batch_id}`}>
+                  {req.batch_id}
+                </Link>
+              </TableCell>
               <TableCell className="font-medium">
                 {new Date(req.eventTime).toLocaleString()}
               </TableCell>
-              <Link href={`/dashboard/batch/${req.batch_id}`}>
-                <TableCell>{req.batch_id}</TableCell>
-              </Link>
+
               <TableCell className="text-left">{req.accepted.length}</TableCell>
               <TableCell>{req.rejected.length}</TableCell>
               <TableCell>{req.pending.length}</TableCell>

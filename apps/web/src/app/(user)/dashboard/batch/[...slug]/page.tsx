@@ -1,6 +1,7 @@
 import { BatchInfoTable } from "@/features/dashboard"
 import { getBatchDetails } from "../../actions"
 import BackButton from "@/components/ui/addons/back-button"
+import { Suspense } from "react"
 
 export default async function RequestsBatchInfo({
   params,
@@ -17,8 +18,9 @@ export default async function RequestsBatchInfo({
       <h1 className="my-10 text-2xl font-bold">Request Info</h1>
 
       {/*  */}
-
-      <BatchInfoTable batchDetails={batchInfo} />
+      <Suspense>
+        <BatchInfoTable batchDetails={batchInfo} />
+      </Suspense>
     </>
   )
 }
