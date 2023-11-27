@@ -2,7 +2,7 @@
   "name": "docs",
   "version": "0.0.0",
   "description": "Easymailer Docs",
-  "private": "true",
+  "private": true,
   "scripts": {
     "dev": "next dev --port 3001",
     "build": "next build",
