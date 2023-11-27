@@ -24,7 +24,7 @@
     "@react-email/render": "^0.0.9",
     "@tanstack/react-query": "^5.4.3",
     "@tanstack/react-table": "^8.10.7",
-    "@xeuxdev/easymailer": "^0.1.1",
+    "@xeuxdev/easymailer": "^0.2.1",
     "axios": "^1.6.0",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
