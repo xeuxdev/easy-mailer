@@ -1,0 +1,31 @@
+# Configuration
+
+To Configure your easymailer package to start sending emails
+
+## Set up your Environment variables
+
+- using the supported transports `gmail` and `smtp`
+
+#### Using `Gmail`
+
+- you need the following environment variables
+
+```js
+MAILER_GOOGLE_USER_EMAIL = "example@gmail.com"
+MAILER_GOOGLE_USER_PASSWORD = "password"
+```
+
+To obtain the above credentials, go to your google account and create an app password
+
+#### Using `SMTP`
+
+- you need the following environment variables
+
+```js
+MAILER_SMTP_USERNAME = "your smtp username"
+MAILER_SMTP_PASSWORD = "your smtp password"
+MAILER_SMTP_HOST = "your smtp host"
+MAILER_SMTP_PORT = "smtp host"
+```
+
+you can get all the above environment variables from your hosting account
