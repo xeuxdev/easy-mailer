@@ -1,3 +1,33 @@
 # Analytics
 
 To get analytics on your emails requests i.e. `Accepted` , `Rejected`, `Pending` emails
+
+1. **Sign Up for an easymailer account**
+
+- Go to [Easymailer](https://easymailer.vercel.app/auth)
+
+- Sign up with your google account.
+
+- You should be redirected to your dashboard.
+
+2. **Create Your API KEY**
+
+- Click on your avatar and click on settings.
+
+- On your settings page, click on the `API` tab.
+
+- Click the `Generate new API key` button to generate your api key.
+
+- Copy and Paste in a secure location as you won't be able to see it again.
+
+3. **Set up the `API` key**
+
+- in your `.env` file paste your `API` key
+
+```js filename=".env" copy
+MAILER_API_KEY = "your api key"
+```
+
+- you should be able to see your analytics on each batch of emails sent.
+
+**Happy Coding**
