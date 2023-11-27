@@ -6,15 +6,13 @@ export const siteConfig = {
   navigations: [
     { name: "Home", href: "/" },
     { name: "Dashboard", href: "/dashboard" },
-    { name: "Docs", href: "/docs" },
+    {
+      name: "Docs",
+      href:
+        process.env.NODE_ENV == "production"
+          ? "https://easymailer-docs.vercel.app/"
+          : "http://localhost:3001",
+    },
     { name: "Pricing", href: "/pricing" },
-  ],
-
-  sidebar: [
-    { name: "Getting Started", href: "/docs/getting-started" },
-    { name: "installation", href: "/docs/installation" },
-    { name: "configuration", href: "/docs/configuration" },
-    { name: "examples", href: "/docs/examples" },
-    { name: "faq", href: "/docs/faq" },
   ],
 }

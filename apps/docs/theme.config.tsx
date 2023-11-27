@@ -21,9 +21,12 @@ const config: DocsThemeConfig = {
     return (
       <>
         <title className="font-bold">{`${
-          pathname.replaceAll("/", "").charAt(0).toUpperCase() +
-          pathname.replaceAll("/", "").slice(1)
-        } - Easymailer`}</title>
+          pathname == "/"
+            ? "Easymailer"
+            : pathname.replaceAll("/", "").charAt(0).toUpperCase() +
+              pathname.replaceAll("/", "").slice(1) +
+              " - Easymailer"
+        }`}</title>
         <meta property="og:url" content={url} />
         <meta property="og:title" content={frontMatter.title || "Easymailer"} />
         <meta
