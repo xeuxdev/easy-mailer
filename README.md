@@ -1,81 +1,106 @@
-# Turborepo starter
+# EasyMailer
 
-This is an official starter Turborepo.
+## This package is a zero-config helper function to help you send emails in your nodejs apps using nodemailer 🚀🚀
 
-## Using this example
+### this package provides support for the following transports
 
-Run the following command:
+- Gmail
+- SMTP
 
-```sh
-npx create-turbo@latest
+## What you need to use this package
+
+### Intall this package into your project using any package manager
+
+- npm
+
+```bash
+    npm i @xeuxdev/easymailer
 ```
 
-## What's inside?
+- pnpm
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```bash
+  pnpm i @xeuxdev/easymailer
 ```
 
-### Develop
+### Set up your environment variables
 
-To develop all apps and packages, run the following command:
+- using gmail
 
-```
-cd my-turborepo
-pnpm dev
-```
+  - you need the following environment variables
 
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```js
+MAILER_GOOGLE_USER_EMAIL = "example@gmail.com"
+MAILER_GOOGLE_USER_PASSWORD = "password"
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+To get the password env, create an app password in your google account
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+- using smtp
 
+  - you need the following environment variables
+
+```js
+MAILER_SMTP_USERNAME = "your smtp username"
+MAILER_SMTP_PASSWORD = "your smtp password"
+MAILER_SMTP_HOST = "your smtp host"
+MAILER_SMTP_PORT = "smtp host"
 ```
-npx turbo link
+
+you can get all the above env from your hosting account
+
+## How to work with the package
+
+- import the package into your server code
+
+```js
+import { sendMail } from "@xeuxdev/easymailer"
+or
+const { sendMail } = require("@xeuxdev/easymailer")
 ```
 
-## Useful Links
+- call the function with the params
 
-Learn more about the power of Turborepo:
+```js
+const response = await sendMail({
+  message: {},
+  transport: {},
+})
+```
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## props
+
+### message
+
+- `from` - `required` - the name of the sender
+- `subject` - `required` - The subject of the email
+- `html` - `required` - The HTML version of the message
+- `plainText` - `required` - The plaintext version of the message
+- `attachments` - `required` - An array of attachment objects
+- `to` - `optional` - Comma separated list or an array of recipients email addresses that will appear on the To: field
+- `cc` - `optional` - Comma separated list or an array of recipients email addresses that will appear on the Cc: field
+- `bcc` - `optional` - Comma separated list or an array of recipients email addresses that will appear on the Bcc: field
+
+### transport
+
+- `service`: - `required` - "gmail" | "smtp"
+- `secure`: - `optional` - boolean - default: true
+- `pool`: - `optional` - boolean - default: true
+- `grouped`: - `optional` - boolean - default: true
+
+## Response
+
+- you get a response object after calling the **sendMail()** function
+
+```js
+{
+  message: string
+  status: "failed" | "successful"
+}
+```
+
+## Compatibility
+
+easymailer is compatible with all server codes, such as express, Nextjs API routes
+
+### Happy Coding
