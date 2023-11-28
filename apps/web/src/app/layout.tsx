@@ -7,6 +7,8 @@ import QueryProvider from "@/components/query-provider"
 import Toast from "@/components/toast"
 import SiteHeader from "@/components/layout/site-header"
 import SessionProviderWrapper from "@/components/session-provider"
+import { Analytics } from '@vercel/analytics/react';
+
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -62,8 +64,8 @@ export default function RootLayout({
             </QueryProvider>
           </SessionProviderWrapper>
           <Toast />
-          {/* <Analytics /> */}
         </ThemeProvider>
+          <Analytics />
       </body>
     </html>
   )
