@@ -35,7 +35,7 @@ const config: DocsThemeConfig = {
       (defaultLocale === locale ? asPath : `/${locale}${asPath}`)
 
     return (
-      <html lang="en">
+      <>
         <title className="font-bold">{`${
           pathname == "/"
             ? "Easymailer"
@@ -53,7 +53,7 @@ const config: DocsThemeConfig = {
           property="og:description"
           content={frontMatter.description || "Easymailer docs"}
         />
-      </html>
+      </>
     )
   },
   docsRepositoryBase: "https://github.com/xeuxdev/easymailer",
