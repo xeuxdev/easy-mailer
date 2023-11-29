@@ -15,12 +15,8 @@ async function SiteHeader() {
   return (
     <header className="py-3 md:py-5">
       <nav className="container flex items-center justify-between bg-background ">
-        <Link
-          href="/"
-          className="flex items-center w-5 md:gap-4"
-          aria-label={siteConfig.name}
-        >
-          <p className="text-sm font-bold text-primary md:text-xl ">
+        <Link href="/" className="flex items-center gap-4">
+          <p className="text-lg font-bold text-primary md:text-xl ">
             {siteConfig.name}
           </p>
 
