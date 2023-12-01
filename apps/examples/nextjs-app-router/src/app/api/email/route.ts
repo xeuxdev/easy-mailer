@@ -1,4 +1,5 @@
 import { sendMail } from "@xeuxdev/easymailer"
+import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {
   const { email } = await request.json()
@@ -14,9 +15,6 @@ export async function POST(request: Request) {
     },
     transport: {
       service: "gmail",
-      // grouped: false,
-      // secure: true,
-      // pool: false,
     },
   })
 

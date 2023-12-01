@@ -5,23 +5,21 @@ const { sendMail } = require("@xeuxdev/easymailer")
 
 // Create an Express application
 const app = express()
+app.use(express.json())
 
 // Define a route
-app.get("/", async (req, res) => {
+app.post("/", async (req, res) => {
+  const { email } = req.body
+
   const response = await sendMail({
     message: {
       from: "John Express",
       html: "Hey this is a message from express",
-      bcc: [
-        "email1@gmail.com",
-        "wmail2@gmail.com",
-        "email3@gmail.com",
-        "email4@gmail.com",
-      ],
+      bcc: email,
       subject: "Test Email From Express",
     },
     transport: {
-      service: "gmail",
+      service: "smtp",
     },
   })
 
