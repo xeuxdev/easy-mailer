@@ -1,5 +1,11 @@
 # @xeuxdev/easymailer
 
+## 0.3.1
+
+### Patch Changes
+
+- baa045a: ship dist folder
+
 ## 0.3.0
 
 ### Minor Changes
