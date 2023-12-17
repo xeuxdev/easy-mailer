@@ -25,7 +25,7 @@ const config: DocsThemeConfig = {
     </div>
   ),
   project: {
-    link: "https://github.com/xeuxdev/easymailer",
+    link: "https://github.com/xeuxdev/easy-mailer",
   },
   head: () => {
     const { asPath, defaultLocale, locale, pathname } = useRouter()
