@@ -1,5 +1,11 @@
 # @xeuxdev/easymailer
 
+## 0.3.0
+
+### Minor Changes
+
+- 78dc45b: update tsup, ship nodemailer types
+
 ## 0.2.1
 
 ### Patch Changes
