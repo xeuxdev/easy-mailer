@@ -1,6 +1,6 @@
-"use server"
+"use server";
 
-import prisma from "@/lib/prisma"
+import prisma from "@/lib/prisma";
 
 export async function getProfileInfo(email: string) {
   const user = await prisma.user.findUnique({
@@ -14,31 +14,32 @@ export async function getProfileInfo(email: string) {
             orderBy: {
               eventTime: "desc",
             },
+            take: 10,
           },
         },
       },
     },
-  })
+  });
 
   const totalAcceptedEmails = user?.profile?.events.reduce(
     (prev, curr) => (prev += curr.accepted.length),
     0
-  )
+  );
   const totalRejectedEmails = user?.profile?.events.reduce(
     (prev, curr) => (prev += curr.rejected.length),
     0
-  )
+  );
   const totalPendingEmails = user?.profile?.events.reduce(
     (prev, curr) => (prev += curr.pending.length),
     0
-  )
+  );
 
   return {
     totalAcceptedEmails,
     totalRejectedEmails,
     totalPendingEmails,
     events: user?.profile?.events,
-  }
+  };
 }
 
 export async function getBatchDetails(batch_id: string) {
@@ -46,7 +47,7 @@ export async function getBatchDetails(batch_id: string) {
     where: {
       batch_id: batch_id,
     },
-  })
+  });
 
-  return batchDetails
+  return batchDetails;
 }
