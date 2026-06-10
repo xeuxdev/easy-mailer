@@ -11,8 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@xeuxdev/easymailer": "workspace:^0.1.1",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "nodemon": "^3.0.1"
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
   }
 }

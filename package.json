@@ -11,12 +11,12 @@
     "release": "turbo build --filter=docs^... && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.22.0",
-    "eslint": "^7.32.0",
-    "prettier": "^2.5.1",
+    "@changesets/cli": "^2.31.0",
+    "eslint": "^10.4.1",
+    "prettier": "^3.8.4",
     "turbo": "latest"
   },
-  "packageManager": "pnpm@8.6.10",
+  "packageManager": "pnpm@11.5.2",
   "dependencies": {
     "@xeuxdev/easymailer": "workspace:^"
   }

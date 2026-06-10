@@ -30,12 +30,12 @@
   },
   "homepage": "https://easymailer.vercel.app/",
   "devDependencies": {
-    "@types/nodemailer": "^6.4.11",
-    "tsup": "^8.0.1",
-    "typescript": "^5.2.2"
+    "@types/nodemailer": "^8.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3"
   },
   "dependencies": {
-    "@types/nodemailer": "^6.4.11",
-    "nodemailer": "^6.9.5"
+    "@types/nodemailer": "^8.0.0",
+    "nodemailer": "^8.0.10"
   }
 }
